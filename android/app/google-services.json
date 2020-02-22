@@ -1,39 +1,50 @@
 {
   "project_info": {
-    "project_number": "174705978857",
-    "firebase_url": "https://pbiremember.firebaseio.com",
-    "project_id": "pbiremember",
-    "storage_bucket": "pbiremember.appspot.com"
+    "project_number": "752420136373",
+    "firebase_url": "https://do-you-flutter.firebaseio.com",
+    "project_id": "do-you-flutter",
+    "storage_bucket": "do-you-flutter.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:174705978857:android:b3107cfcd3cf54f2",
+        "mobilesdk_app_id": "1:752420136373:android:025b82309f57b5a6a065fc",
         "android_client_info": {
           "package_name": "com.popupbits.iremember"
         }
       },
       "oauth_client": [
         {
-          "client_id": "174705978857-f9ab0e0mqvdbhghsem9r8vsuli86njet.apps.googleusercontent.com",
+          "client_id": "752420136373-3eqlqhr2uvmado0a3ttbmuhm89ngbf25.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.popupbits.iremember",
-            "certificate_hash": "67a7d9ac3de2b5587fd9cd8d0879becff84e60bc"
+            "certificate_hash": "156435a4a978f9f5fab50c0908c11deda28abb44"
           }
+        },
+        {
+          "client_id": "752420136373-shfk0n71oaugklh2vufkqps65gnsoq8h.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCJ1EMQsGh6bV4BZCO-WtHHInZcGFFJ7A"
+          "current_key": "AIzaSyBkyyYJo9SANVjh_GWVWWiplMJtvR-AluU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "174705978857-gut6f51vqgajbjqqa0vlq5e142ikavql.apps.googleusercontent.com",
+              "client_id": "752420136373-shfk0n71oaugklh2vufkqps65gnsoq8h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "752420136373-l3obourj29e9s8oeavo40ionplosk09i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.popupbits.iremember"
+              }
             }
           ]
         }
