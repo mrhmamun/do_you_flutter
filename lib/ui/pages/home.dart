@@ -1,24 +1,3 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase_storage/firebase_storage.dart';
-//import 'package:flutter/material.dart';
-//import 'package:iremember/models/user.dart';
-//
-////TODO List out items from Firestore with image using the state management solution you have integrated
-//class HomePage2 extends StatelessWidget {
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//      appBar: AppBar(
-//        title: Text("Home"),
-//        leading: Icon(Icons.home),
-//        backgroundColor: Colors.blueAccent,
-//      ),
-//      body: Container()
-//    );
-//  }
-//}
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +8,7 @@ import 'package:iremember/models/user.dart';
 import 'package:iremember/ui/pages/add.dart';
 import 'package:iremember/ui/pages/create_account.dart';
 import 'package:iremember/ui/pages/post_screen.dart';
-
+import 'package:iremember/utils/widgets/header.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final StorageReference storageReference = FirebaseStorage.instance.ref();
@@ -83,8 +62,8 @@ class _HomeState extends State<Home> {
     DocumentSnapshot doc = await userRef.document(user.id).get();
 
     if (!doc.exists) {
-      final username = await Navigator.push(context,
-          MaterialPageRoute(builder: (context) => CreateAccount()));
+      final username = await Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CreateAccount()));
       userRef.document(user.id).setData({
         'id': user.id,
         'email': user.email,
@@ -131,24 +110,15 @@ class _HomeState extends State<Home> {
 
   Scaffold buildAuthScreen() {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-        centerTitle: true,
-        leading: Icon(Icons.home),
-        backgroundColor: Colors.blueAccent,
-        actions: <Widget>[
-          RaisedButton.icon(onPressed: logout, icon: Icon(Icons.account_circle,color: Colors.white,), label: Text('Log Out',style: TextStyle(color: Colors.white),),color: Colors.blueAccent),
-        ],
-      ),
-//        body: Center(child: RaisedButton(child: Text('Upload Data'), onPressed: (){
-//          Navigator.push(context,
-//              MaterialPageRoute(builder: (context) => AddPage2(currentUser:currentUser)));
-//        })),
+      appBar: header(context, isAppTitle: true, leading: Icon(Icons.home)),
       body: PageView(
         children: <Widget>[
-          PostScreen(),
-          AddPage(currentUser:currentUser),
-          CreateAccount(),
+          PostScreen(
+            userId: googleSignIn.currentUser.id,
+          ),
+          AddPage(currentUser: currentUser),
+          Center(
+              child: RaisedButton(child: Text('Log Out'), onPressed: logout)),
         ],
         controller: pageController,
         physics: NeverScrollableScrollPhysics(),
@@ -166,7 +136,7 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.file_upload),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_active),
+            icon: Icon(Icons.account_circle),
           ),
         ],
       ),
@@ -204,9 +174,9 @@ class _HomeState extends State<Home> {
                 width: 260,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/google_signin_button.png'),
-                      fit: BoxFit.cover,
-                    )),
+                  image: AssetImage('assets/images/google_signin_button.png'),
+                  fit: BoxFit.cover,
+                )),
               ),
             ),
           ],

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:iremember/models/user.dart';
-import 'package:iremember/widgets/progress.dart';
+import 'package:iremember/utils/widgets/header.dart';
+import 'package:iremember/utils/widgets/progress.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:image/image.dart' as Im;
-
 import 'home.dart';
 
 //TODO allow user to pick image and display the preview in UI
@@ -28,7 +28,6 @@ class _AddPageState extends State<AddPage> {
   TextEditingController locationController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-//  TextEditingController captionController = TextEditingController();
   File file;
   bool isUploading = false;
   String postId = Uuid().v4();
@@ -77,7 +76,11 @@ class _AddPageState extends State<AddPage> {
   }
 
   createPostInFireStore(
-      {String mediaUrl, String location, String description, String title, String caption}) {
+      {String mediaUrl,
+      String location,
+      String description,
+      String title,
+      String caption}) {
     postsRef
         .document(widget.currentUser.id)
         .collection('usersPosts')
@@ -107,13 +110,11 @@ class _AddPageState extends State<AddPage> {
       mediaUrl: mediaUrl,
       location: locationController.text,
       title: titleController.text,
-//      caption: captionController.text,
       description: descriptionController.text,
     );
     locationController.clear();
     titleController.clear();
     descriptionController.clear();
-//    captionController.clear();
     setState(() {
       file = null;
       isUploading = false;
@@ -151,23 +152,6 @@ class _AddPageState extends State<AddPage> {
     );
   }
 
-//  ListTile _showCaptionField() {
-//    ListTile(
-//            leading: CircleAvatar(
-//              backgroundImage:
-//              CachedNetworkImageProvider(widget.currentUser.photoUrl),
-//            ),
-//            title: Container(
-//              child: TextField(
-//                controller: captionController,
-//                decoration: InputDecoration(
-//                  hintText: 'Write Caption For Image',
-//                  border: InputBorder.none,
-//                ),
-//              ),
-//            ),
-//          );
-//  }
 
   ListTile _showLocField() {
     return ListTile(
@@ -187,8 +171,6 @@ class _AddPageState extends State<AddPage> {
       ),
     );
   }
-
-
 
   SizedBox _buildLocSelectButton() {
     return SizedBox(
@@ -243,10 +225,6 @@ class _AddPageState extends State<AddPage> {
             height: 20,
           ),
           _buildDescriptionField(),
-//          SizedBox(
-//            height: 20,
-//          ),
-//          _showCaptionField(),
           SizedBox(
             height: 20,
           ),
@@ -327,13 +305,10 @@ class _AddPageState extends State<AddPage> {
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
-//    return file == null ? Text('Null'): buildPostScreen();
-
-  return buildPostScreen();
-
-
+    return Scaffold(
+      body: buildPostScreen(),
+    );
   }
 }

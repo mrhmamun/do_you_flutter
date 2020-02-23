@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:iremember/ui/pages/add.dart';
+import 'package:iremember/ui/pages/create_account.dart';
 import 'package:iremember/ui/pages/home.dart';
 import 'package:iremember/ui/pages/post_screen.dart';
-
-
 
 /* 
 Please complete the tasks listed in TODOs in different files
@@ -21,14 +21,14 @@ Please complete the tasks listed in TODOs in different files
 
  */
 
-
-
 void main() {
+
   WidgetsFlutterBinding.ensureInitialized();
-  Firestore.instance.settings(timestampsInSnapshotsEnabled: true).then((_){
+  Firestore.instance.settings(timestampsInSnapshotsEnabled: true).then((_) {
     print('Timestamp is Enabled in Snapshot\n');
-  }, onError: (_){ print('Timestamp Error Enabled in Snapshot\n');}
-  );
+  }, onError: (_) {
+    print('Timestamp Error Enabled in Snapshot\n');
+  });
   runApp(IRememberApp());
 }
 
@@ -36,11 +36,14 @@ class IRememberApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'IRemember',
       theme: ThemeData(primaryColor: Colors.deepOrange),
       routes: {
         "/": (_) => Home(),
         "posts": (_) => PostScreen(),
+        "createAccount": (_) => CreateAccount(),
+        "addPosts": (_) => AddPage(),
       },
     );
   }

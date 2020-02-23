@@ -23,6 +23,7 @@ dependencies:
   google_fonts: ^0.2.0
   cloud_firestore: ^0.9.7+2
   google_sign_in: ^4.0.1+1
+  curved_navigation_bar: ^0.3.2
 
 dev_dependencies:
   flutter_test:
@@ -35,10 +36,7 @@ flutter:
   assets:
     - assets/images/google_signin_button.png
     - assets/images/upload.svg
-    - assets/images/search.svg
-    - assets/images/activity_feed.svg
-    - assets/images/no_content.svg
-  
+
     
     
                                       
